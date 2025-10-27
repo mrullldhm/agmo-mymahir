@@ -1,0 +1,18 @@
+<style></style>
+
+<main class="main">
+  <div class="containeer">
+    <h1>{{ title }}</h1>
+    <br />
+
+    <h3>Hello {{ myName }}</h3>
+    <input [(ngModel)]="textInput" type="text" placeholder="Enter your name" />
+    <button (click)="changeName()">Click here</button>
+    <br /><br />
+
+    <button (click)="btnClick()">Calculate</button>
+    <br /><br />
+
+    <button (click)="btnArray()">List Array</button>
+  </div>
+</main>
