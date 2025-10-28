@@ -1,0 +1,24 @@
+.example-card {
+  max-width: 400px;
+  margin: 0.5em;
+  background-color: rgb(194, 230, 250);
+}
+
+.example-card-dark {
+  max-width: 400px;
+  margin: 0.5em;
+  background-color: rgba(26, 27, 27, 0.251);
+}
+
+.example-card-footer {
+  padding: 16px;
+}
+
+.padding {
+  padding: 0.5em;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}

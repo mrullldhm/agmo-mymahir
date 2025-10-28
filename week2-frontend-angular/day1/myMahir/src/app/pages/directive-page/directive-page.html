@@ -1,0 +1,42 @@
+<div class="padding">
+  <mat-slide-toggle (change)="onToggleChange()">Football Club List</mat-slide-toggle>
+  <h2>Example of &#64;for, &#64;if, ngClass, ngStyle, &#64;switch</h2>
+
+  @if(showListFootballs){
+  <div class="container">
+    @for (football of footballs; track football.club) { @if (football.club != ""){
+    <mat-card
+      [ngClass]="football.club == 'Liverpool FC' ? 'example-card' : 'example-card-dark'"
+      appearance="outlined"
+    >
+      <!-- <mat-card *ngFor="let football of footballs" class="example-card" appearance="outlined"> -->
+      <mat-card-header>
+        <mat-card-title>{{ football.club }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p [ngStyle]="{ 'font-weight': football.club == 'Liverpool FC' ? 700 : 200 }">
+          {{ football.player }}
+        </p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer">
+        <mat-chip-set aria-label="Chihuahua traits">
+          @switch (football.player) { @case("Lionel Messi"){
+          <mat-chip>Argentina</mat-chip>
+          } @case ("Cristiano Ronaldo"){
+          <mat-chip>Portugal</mat-chip>
+          } @case ("Harry Kane"){
+          <mat-chip>England</mat-chip>
+          } @default {
+          <mat-chip>Unknown Country</mat-chip>
+          } }
+
+          <!-- <mat-chip>charming</mat-chip>
+          <mat-chip>graceful</mat-chip>
+          <mat-chip>sassy</mat-chip> -->
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+    } }
+  </div>
+  }
+</div>
