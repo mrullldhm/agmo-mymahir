@@ -1,6 +1,29 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../database");
+const jwt = require("jsonwebtoken");
+
+// --------------------------------------------------------------- //
+
+function verifyToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "Access denied. No token provided",
+    });
+  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err)
+      return res.status(403).json({
+        success: false,
+        message: "Invalid token",
+      });
+    req.user = user;
+    next();
+  });
+}
 
 // --------------------------------------------------------------- //
 
@@ -55,7 +78,7 @@ router.get("/:id", async (req, res) => {
 
 // --------------------------------------------------------------- //
 
-router.post("/add", async (req, res) => {
+router.post("/add", verifyToken, async (req, res) => {
   const data = { ...req.body, ...req.query };
   const { name, student_no, email, phone } = data;
   var errors = [];
@@ -67,7 +90,7 @@ router.post("/add", async (req, res) => {
     errors.push("Student no is required and must be in number format");
   }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.push("Email no is required and must be in email format");
+    errors.push("Email is required and must be in email format");
   }
   if (!/^\d+$/.test(phone)) {
     errors.push("Phone must be in number format");
@@ -95,7 +118,7 @@ router.post("/add", async (req, res) => {
     console.error(err);
     res.status(500).json({
       success: false,
-      message: "User detail retrieval failed",
+      message: "Failed to add user",
       error: err.message,
     });
   }
@@ -156,9 +179,9 @@ router.put("/update/:id", async (req, res) => {
 
 router.delete("/delete/:id", async (req, res) => {
   try {
-    const [result] = await db.query(
-      "DELETE FROM users WHERE id =?"[req.params.id]
-    );
+    const [result] = await db.query("DELETE FROM users WHERE id =?", [
+      req.params.id,
+    ]);
     if (result.affectedRows == 0) {
       return res.status(404).json({
         success: false,

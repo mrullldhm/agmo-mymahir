@@ -54,6 +54,15 @@ app.use("/students", studentRoutes);
 const studentApiRoute = require("./routes/api/studentapi_routes");
 app.use("/api/students", studentApiRoute);
 
+// authentication route
+const authRoutes = require("./routes/api/authapi_routes");
+app.use("/api/auth", authRoutes);
+
+// jasonwebtoken
+// const authRoutes = require("./routes/api/authapi_routes");
+// app.use("/api/auth", authRoutes);
+
+// port listen
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
