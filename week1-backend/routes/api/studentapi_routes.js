@@ -181,4 +181,4 @@ router.delete("/delete/:id", async (req, res) => {
 
 // --------------------------------------------------------------- //
 
-module.export = router;
+module.exports = router;

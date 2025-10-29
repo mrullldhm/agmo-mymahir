@@ -50,6 +50,10 @@ app.use("/contacts", contactRoutes);
 const studentRoutes = require("./routes/students/student_route");
 app.use("/students", studentRoutes);
 
+// api route
+const studentApiRoute = require("./routes/api/studentapi_routes");
+app.use("/api/students", studentApiRoute);
+
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
