@@ -17,7 +17,7 @@ export class Data {
   getLocalStorage(key: string): any {
     if (this.isBrowser) {
       const item = localStorage.getItem(key);
-      return item ? JSON.parse(item) : null;
+      return item 
     }
     return null;
   }

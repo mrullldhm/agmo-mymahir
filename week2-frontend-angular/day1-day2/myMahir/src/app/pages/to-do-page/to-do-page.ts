@@ -4,6 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddDialog } from '../../components/add-dialog/add-dialog';
 import { Data } from '../../services/data';
 
+interface TodoItem {
+  title: string;
+  selected: boolean;
+}
+
 @Component({
   selector: 'app-to-do-page',
   imports: [...SharedModules],
@@ -11,14 +16,13 @@ import { Data } from '../../services/data';
   styleUrl: './to-do-page.scss',
 })
 export class ToDoPage {
-  public todoList = [
-    { title: 'Do Laundry', selected: false },
-    { title: 'Wash Car', selected: false },
-    { title: 'Do Homework', selected: false },
-    { title: 'Football Training', selected: false },
-    { title: 'Night Hangout', selected: false },
-    { title: 'Call dude', selected: false },
-  ];
+  public todoList: TodoItem[] = [];
+  // { title: 'Do Laundry', selected: false },
+  // { title: 'Wash Car', selected: false },
+  // { title: 'Do Homework', selected: false },
+  // { title: 'Football Training', selected: false },
+  // { title: 'Night Hangout', selected: false },
+  // { title: 'Call dude', selected: false },
 
   constructor(public dialog: MatDialog, private dataService: Data) {}
 
@@ -35,7 +39,7 @@ export class ToDoPage {
       if (result) {
         console.log('Add button succeeded');
         this.todoList.push({ title: result, selected: false });
-        this.dataService.setLocalStorage('todo', JSON.stringify(this.todoList));
+        this.dataService.setLocalStorage('todo', this.todoList);
       }
     });
   }
@@ -49,11 +53,16 @@ export class ToDoPage {
     return;
   }
 
+  onClear() {
+    this.dataService.clearStorage();
+    this.todoList = [];
+  }
+
   ngOnInit(): void {
     let data = this.dataService.getLocalStorage('todo');
     if (data) {
       this.todoList = JSON.parse(data);
-      console.log(this.todoList)
+      console.log(this.todoList);
     } else {
       this.todoList = [];
     }
