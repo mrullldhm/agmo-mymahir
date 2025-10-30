@@ -1,10 +1,18 @@
 const mysql = require("mysql2/promise");
+require("dotenv").config();
 
+// const database = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "1457",
+//   database: "mymahir",
+// });
 const database = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "1457",
-  database: "mymahir",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
 (async () => {

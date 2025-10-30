@@ -13,6 +13,21 @@ app.use(express.urlencoded({ extended: true }));
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
+// --------------------------------------------------------------------------- //
+
+const cors = require("cors");
+
+const corsOptions = {
+  origin: ["http://localhost:4200", "https://mywebsite.com"],
+  methods: "GET, HEAD, PUT, PATCH ,POST, DELETE",
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+
+// --------------------------------------------------------------------------- //
+
 app.get("/", (req, res) => {
   res.send("Hello Express!!");
 });
