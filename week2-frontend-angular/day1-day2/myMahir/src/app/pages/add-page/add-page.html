@@ -1,0 +1,37 @@
+<div class="card-container">
+  <mat-card appearance="outlined" style="min-width: 300px; margin: 1em">
+    <mat-card-header>
+      <mat-card-title>Add New Student</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="margin-top: 1em;">
+      <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Student Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Student Number</mat-label>
+          <input matInput formControlName="student_no" placeholder="Enter number " />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Student Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Student Phone Number</mat-label>
+          <input matInput formControlName="phone" placeholder="Enter phone number" />
+        </mat-form-field>
+
+        <mat-card-actions align="end">
+          <button mat-raised-button type="button" routerLink="/students">Cancel</button>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <button mat-button routerLink="/students">Back</button>
+</div>

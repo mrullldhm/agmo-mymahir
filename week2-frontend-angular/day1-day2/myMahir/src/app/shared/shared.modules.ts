@@ -39,4 +39,5 @@ export const SharedModules = [
   MatDialogTitle,
   MatFormFieldModule,
   MatTableModule,
+  ReactiveFormsModule
 ];
