@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 export const SharedModules = [
@@ -36,5 +37,6 @@ export const SharedModules = [
   MatDialogClose,
   MatDialogContent,
   MatDialogTitle,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTableModule,
 ];
